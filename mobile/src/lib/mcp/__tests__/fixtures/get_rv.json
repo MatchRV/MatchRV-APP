@@ -1,0 +1,193 @@
+{
+ "jsonrpc": "2.0",
+ "id": 4,
+ "result": {
+  "content": [
+   {
+    "type": "text",
+    "text": "Unit detail."
+   }
+  ],
+  "structuredContent": {
+   "unit": {
+    "id": "vin:4X4TSME2XSA338389",
+    "vin": "4X4TSME2XSA338389",
+    "stockNumber": "2695347",
+    "title": "2025 FOREST RIVER SALEM 29VBUD",
+    "year": 2025,
+    "make": "Forest River",
+    "model": "SALEM",
+    "trim": null,
+    "floorplanCode": "29VBUD",
+    "rvType": "travel_trailer",
+    "condition": "used",
+    "status": "available",
+    "priceUsd": {
+     "value": 32074,
+     "source": "dealer_listing",
+     "confidence": "high",
+     "note": "Dealer's current price on the unit's own listing page (read 2026-11-20); not MSRP.",
+     "sourceUrl": "https://rv.campingworld.com/rv/2025-forest-river-salem-29vbud-2695347-hamburg-ny",
+     "observedAt": "2026-11-20T12:48:45.255Z"
+    },
+    "msrpUsd": {
+     "value": null,
+     "source": null,
+     "confidence": null
+    },
+    "lengthFt": {
+     "value": null,
+     "source": null,
+     "confidence": null
+    },
+    "dryWeightLbs": {
+     "value": 7728,
+     "source": "dealer_listing",
+     "confidence": "high"
+    },
+    "gvwrLbs": {
+     "value": 9710,
+     "source": "dealer_listing",
+     "confidence": "high"
+    },
+    "hitchWeightLbs": {
+     "value": 910,
+     "source": "dealer_listing",
+     "confidence": "high"
+    },
+    "sleeps": {
+     "value": 7,
+     "source": "dealer_listing",
+     "confidence": "high",
+     "note": "Stated on the dealer's listing page.",
+     "observedAt": "2026-10-31T16:30:30.000Z"
+    },
+    "slideouts": {
+     "value": 1,
+     "source": "dealer_listing",
+     "confidence": "high"
+    },
+    "freshWaterGal": {
+     "value": 40,
+     "source": "dealer_listing",
+     "confidence": "high"
+    },
+    "greyWaterGal": {
+     "value": 60,
+     "source": "dealer_listing",
+     "confidence": "high"
+    },
+    "blackWaterGal": {
+     "value": 30,
+     "source": "dealer_listing",
+     "confidence": "high"
+    },
+    "bunkhouse": {
+     "value": null,
+     "source": null,
+     "confidence": null,
+     "note": "Bunk layout not stated by the dealer or a matched manufacturer floorplan."
+    },
+    "entryDoors": {
+     "value": null,
+     "source": null,
+     "confidence": null,
+     "note": "Entry-door count not stated by dealer."
+    },
+    "solar": {
+     "value": null,
+     "source": null,
+     "confidence": null,
+     "note": "Dealer text does not mention solar either way."
+    },
+    "lithiumBattery": {
+     "value": null,
+     "source": null,
+     "confidence": null,
+     "note": "Battery chemistry not stated by dealer."
+    },
+    "generator": {
+     "value": null,
+     "source": null,
+     "confidence": null,
+     "note": "Generator not mentioned by dealer."
+    },
+    "fourSeason": {
+     "value": null,
+     "source": null,
+     "confidence": null,
+     "note": "Four-season capability not stated."
+    },
+    "outdoorKitchen": {
+     "value": null,
+     "source": null,
+     "confidence": null,
+     "note": "Outdoor kitchen not stated."
+    },
+    "boondocking": {
+     "score": 30,
+     "knownInputs": [
+      "40 gal fresh water (+20)",
+      "60 gal grey water (+5)",
+      "30 gal black water (+5)"
+     ],
+     "missingInputs": [
+      "off-grid power (solar/generator)",
+      "battery chemistry",
+      "four-season construction"
+     ]
+    },
+    "dealer": {
+     "id": "rv.campingworld.com:hamburg",
+     "name": "Camping World of Hamburg",
+     "city": "Hamburg",
+     "state": "NY",
+     "lat": 42.7234,
+     "lng": -78.8348,
+     "website": "https://rv.campingworld.com"
+    },
+    "images": [
+     "https://images.rvs.com/BUF7/2695347/1000x/2025_forest_river_salem_29vbud_buf72695347_impel-capture_close-up_srp.jpg",
+     "https://images.rvs.com/sku/RV814260/originals/FOREST_RIVER_SALEM_29VBUD.jpg",
+     "https://images.rvs.com/BUF7/2695347/1000x/2025_forest_river_salem_29vbud_buf72695347_impel-capture_close-up_living-area-main-1.jpg"
+    ],
+    "description": "Shop the 2025 Forest River Salem 29VBUD - Stock #2695347. It is currently available at Camping World in Hamburg, NY.",
+    "features": [],
+    "provenance": {
+     "sourceKind": "dealer_website_snapshot",
+     "dealerDomain": "rv.campingworld.com",
+     "firstSeenAt": "2026-10-14T05:46:52.106Z",
+     "lastSeenAt": "2026-11-20T12:48:45.255Z",
+     "listingUrl": "https://rv.campingworld.com/rv/2025-forest-river-salem-29vbud-2695347-hamburg-ny",
+     "lastSeenBasis": "dealer_page_verified",
+     "pagePass": {
+      "date": "2026-10-30/31",
+      "listingUrl": "https://rv.campingworld.com/rv/2025-forest-river-salem-29vbud-2695347-hamburg-ny",
+      "fetchedAt": "2026-10-31T16:30:30.000Z",
+      "fields": [
+       "condition"
+      ]
+     },
+     "verifiedAt": "2026-11-20T12:48:45.255Z",
+     "verifiedVia": "recheck"
+    }
+   },
+   "availability": {
+    "status": "available",
+    "lastSeenAt": "2026-11-20T12:48:45.255Z",
+    "daysSinceLastSeen": 0,
+    "snapshotBuiltAt": "2026-11-21T05:04:00.612Z",
+    "dealerListingUrl": "https://rv.campingworld.com/rv/2025-forest-river-salem-29vbud-2695347-hamburg-ny",
+    "needsDealerConfirmation": false,
+    "guidance": "The dealer's site listed this RV as available when MatchRV last saw it."
+   },
+   "walkthrough": {
+    "kind": "model_search",
+    "url": "https://www.youtube.com/results?search_query=2025+Forest+River+SALEM+29VBUD+walkthrough",
+    "label": "Same model \u2014 this unit may differ",
+    "query": "2025 Forest River SALEM 29VBUD walkthrough",
+    "sameUnit": false
+   }
+  }
+ }
+}

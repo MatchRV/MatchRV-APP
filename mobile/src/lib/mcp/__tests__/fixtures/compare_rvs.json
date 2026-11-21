@@ -1,0 +1,400 @@
+{
+ "jsonrpc": "2.0",
+ "id": 5,
+ "result": {
+  "content": [
+   {
+    "type": "text",
+    "text": "Comparison ready."
+   }
+  ],
+  "structuredContent": {
+   "comparison": {
+    "unitIds": [
+     "vin:4X4TSME2XSA338389",
+     "vin:5ZT2SSXB4VE025109"
+    ],
+    "titles": [
+     "2025 FOREST RIVER SALEM 29VBUD",
+     "2027 Shasta I-5 Edition"
+    ],
+    "rows": [
+     {
+      "spec": "price",
+      "unit": "USD",
+      "values": [
+       32074,
+       32077
+      ],
+      "sources": [
+       "dealer_listing",
+       "dealer_listing"
+      ],
+      "bestIndex": 0
+     },
+     {
+      "spec": "year",
+      "unit": "",
+      "values": [
+       2025,
+       2027
+      ],
+      "sources": [
+       "dealer_listing",
+       "dealer_listing"
+      ],
+      "bestIndex": 1
+     },
+     {
+      "spec": "length",
+      "unit": "ft",
+      "values": [
+       null,
+       36.08
+      ],
+      "sources": [
+       null,
+       "dealer_listing"
+      ],
+      "bestIndex": null
+     },
+     {
+      "spec": "dry weight",
+      "unit": "lbs",
+      "values": [
+       7728,
+       null
+      ],
+      "sources": [
+       "dealer_listing",
+       null
+      ],
+      "bestIndex": null
+     },
+     {
+      "spec": "GVWR",
+      "unit": "lbs",
+      "values": [
+       9710,
+       9554
+      ],
+      "sources": [
+       "dealer_listing",
+       "dealer_listing"
+      ],
+      "bestIndex": 1
+     },
+     {
+      "spec": "hitch weight",
+      "unit": "lbs",
+      "values": [
+       910,
+       null
+      ],
+      "sources": [
+       "dealer_listing",
+       null
+      ],
+      "bestIndex": null
+     },
+     {
+      "spec": "sleeps",
+      "unit": "",
+      "values": [
+       7,
+       7
+      ],
+      "sources": [
+       "dealer_listing",
+       "dealer_listing"
+      ],
+      "bestIndex": 0
+     }
+    ],
+    "constraintSummary": [
+     {
+      "unitId": "vin:4X4TSME2XSA338389",
+      "hardStatus": "pass",
+      "score": 55,
+      "failed": [],
+      "unknown": []
+     },
+     {
+      "unitId": "vin:5ZT2SSXB4VE025109",
+      "hardStatus": "pass",
+      "score": 55,
+      "failed": [],
+      "unknown": []
+     }
+    ],
+    "unknownNotes": [
+     "length: unknown for 1 of 2 units",
+     "dry weight: unknown for 1 of 2 units",
+     "hitch weight: unknown for 1 of 2 units",
+     "slideouts: unknown for 1 of 2 units",
+     "fresh water: unknown for 1 of 2 units",
+     "grey water: unknown for 1 of 2 units",
+     "black water: unknown for 1 of 2 units",
+     "boondocking score: unknown for 1 of 2 units"
+    ]
+   },
+   "units": [
+    {
+     "id": "vin:4X4TSME2XSA338389",
+     "vin": "4X4TSME2XSA338389",
+     "stockNumber": "2695347",
+     "title": "2025 FOREST RIVER SALEM 29VBUD",
+     "year": 2025,
+     "make": "Forest River",
+     "model": "SALEM",
+     "trim": null,
+     "floorplanCode": "29VBUD",
+     "rvType": "travel_trailer",
+     "condition": "used",
+     "status": "available",
+     "priceUsd": {
+      "value": 32074,
+      "source": "dealer_listing",
+      "confidence": "high",
+      "note": "Dealer's current price on the unit's own listing page (read 2026-11-20); not MSRP.",
+      "sourceUrl": "https://rv.campingworld.com/rv/2025-forest-river-salem-29vbud-2695347-hamburg-ny",
+      "observedAt": "2026-11-20T12:48:45.255Z"
+     },
+     "msrpUsd": {
+      "value": null,
+      "source": null,
+      "confidence": null
+     },
+     "lengthFt": {
+      "value": null,
+      "source": null,
+      "confidence": null
+     },
+     "dryWeightLbs": {
+      "value": 7728,
+      "source": "dealer_listing",
+      "confidence": "high"
+     },
+     "gvwrLbs": {
+      "value": 9710,
+      "source": "dealer_listing",
+      "confidence": "high"
+     },
+     "hitchWeightLbs": {
+      "value": 910,
+      "source": "dealer_listing",
+      "confidence": "high"
+     },
+     "sleeps": {
+      "value": 7,
+      "source": "dealer_listing",
+      "confidence": "high",
+      "note": "Stated on the dealer's listing page.",
+      "observedAt": "2026-10-31T16:30:30.000Z"
+     },
+     "slideouts": {
+      "value": 1,
+      "source": "dealer_listing",
+      "confidence": "high"
+     },
+     "freshWaterGal": {
+      "value": 40,
+      "source": "dealer_listing",
+      "confidence": "high"
+     },
+     "greyWaterGal": {
+      "value": 60,
+      "source": "dealer_listing",
+      "confidence": "high"
+     },
+     "blackWaterGal": {
+      "value": 30,
+      "source": "dealer_listing",
+      "confidence": "high"
+     },
+     "bunkhouse": {
+      "value": null,
+      "source": null,
+      "confidence": null,
+      "note": "Bunk layout not stated by the dealer or a matched manufacturer floorplan."
+     },
+     "entryDoors": {
+      "value": null,
+      "source": null,
+      "confidence": null,
+      "note": "Entry-door count not stated by dealer."
+     },
+     "solar": {
+      "value": null,
+      "source": null,
+      "confidence": null,
+      "note": "Dealer text does not mention solar either way."
+     },
+     "lithiumBattery": {
+      "value": null,
+      "source": null,
+      "confidence": null,
+      "note": "Battery chemistry not stated by dealer."
+     },
+     "generator": {
+      "value": null,
+      "source": null,
+      "confidence": null,
+      "note": "Generator not mentioned by dealer."
+     },
+     "fourSeason": {
+      "value": null,
+      "source": null,
+      "confidence": null,
+      "note": "Four-season capability not stated."
+     },
+     "outdoorKitchen": {
+      "value": null,
+      "source": null,
+      "confidence": null,
+      "note": "Outdoor kitchen not stated."
+     },
+     "dealer": {
+      "id": "rv.campingworld.com:hamburg",
+      "name": "Camping World of Hamburg",
+      "city": "Hamburg",
+      "state": "NY",
+      "lat": 42.7234,
+      "lng": -78.8348,
+      "website": "https://rv.campingworld.com"
+     }
+    },
+    {
+     "id": "vin:5ZT2SSXB4VE025109",
+     "vin": "5ZT2SSXB4VE025109",
+     "stockNumber": "VE025109",
+     "title": "2027 Shasta I-5 Edition",
+     "year": 2027,
+     "make": "Shasta",
+     "model": "I 5",
+     "trim": null,
+     "floorplanCode": null,
+     "rvType": "travel_trailer",
+     "condition": "new",
+     "status": "available",
+     "priceUsd": {
+      "value": 32077,
+      "source": "dealer_listing",
+      "confidence": "high",
+      "note": "Dealer's current price on the unit's own listing page (read 2026-11-09); not MSRP.",
+      "sourceUrl": "https://www.rvvaluemart.com/inventory/new/2027-coachmen-shasta-travel-trailer-ve025109",
+      "observedAt": "2026-11-10T04:24:52.000Z"
+     },
+     "msrpUsd": {
+      "value": null,
+      "source": null,
+      "confidence": null
+     },
+     "lengthFt": {
+      "value": 36.08,
+      "source": "dealer_listing",
+      "confidence": "medium",
+      "sourceUrl": "https://www.rvvaluemart.com/inventory/new/2027-coachmen-shasta-travel-trailer-ve025109",
+      "note": "Copied from MarketCheck's crawl of this dealer listing (see sourceUrl); confirm with the dealer."
+     },
+     "dryWeightLbs": {
+      "value": null,
+      "source": null,
+      "confidence": null
+     },
+     "gvwrLbs": {
+      "value": 9554,
+      "source": "dealer_listing",
+      "confidence": "medium",
+      "sourceUrl": "https://www.rvvaluemart.com/inventory/new/2027-coachmen-shasta-travel-trailer-ve025109",
+      "note": "Copied from MarketCheck's crawl of this dealer listing (see sourceUrl); confirm with the dealer."
+     },
+     "hitchWeightLbs": {
+      "value": null,
+      "source": null,
+      "confidence": null
+     },
+     "sleeps": {
+      "value": 7,
+      "source": "dealer_listing",
+      "confidence": "medium",
+      "note": "Stated on the dealer's listing page.",
+      "sourceUrl": "https://www.rvvaluemart.com/inventory/new/2027-coachmen-shasta-travel-trailer-ve025109",
+      "observedAt": "2026-11-10T04:24:52.000Z"
+     },
+     "slideouts": {
+      "value": null,
+      "source": null,
+      "confidence": null
+     },
+     "freshWaterGal": {
+      "value": null,
+      "source": null,
+      "confidence": null
+     },
+     "greyWaterGal": {
+      "value": null,
+      "source": null,
+      "confidence": null
+     },
+     "blackWaterGal": {
+      "value": null,
+      "source": null,
+      "confidence": null
+     },
+     "bunkhouse": {
+      "value": null,
+      "source": null,
+      "confidence": null,
+      "note": "Bunk layout not stated by the dealer or a matched manufacturer floorplan."
+     },
+     "entryDoors": {
+      "value": null,
+      "source": null,
+      "confidence": null,
+      "note": "Entry-door count not stated by dealer."
+     },
+     "solar": {
+      "value": null,
+      "source": null,
+      "confidence": null,
+      "note": "Dealer text does not mention solar either way."
+     },
+     "lithiumBattery": {
+      "value": null,
+      "source": null,
+      "confidence": null,
+      "note": "Battery chemistry not stated by dealer."
+     },
+     "generator": {
+      "value": null,
+      "source": null,
+      "confidence": null,
+      "note": "Generator not mentioned by dealer."
+     },
+     "fourSeason": {
+      "value": null,
+      "source": null,
+      "confidence": null,
+      "note": "Four-season capability not stated."
+     },
+     "outdoorKitchen": {
+      "value": null,
+      "source": null,
+      "confidence": null,
+      "note": "Outdoor kitchen not stated."
+     },
+     "dealer": {
+      "id": "rvvaluemart.com:lititz",
+      "name": "Rv Value Mart",
+      "city": "Lititz",
+      "state": "PA",
+      "lat": 40.221984,
+      "lng": -76.26438,
+      "website": "https://rvvaluemart.com"
+     }
+    }
+   ]
+  }
+ }
+}
