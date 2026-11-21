@@ -1,0 +1,6 @@
+{
+  "name": "MatchRV",
+  "description": "AI-powered RV discovery app with a swipeable dealer inventory deck, instant filters, saved favorites, AI search, and direct dealer inquiries via MatchRV MCP.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

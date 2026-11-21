@@ -1,0 +1,259 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidTimestamp(ts) {
+      return ts is timestamp && ts <= request.time;
+    }
+
+    function isValidOptionalString(data, key, maxLen) {
+      return !(key in data) || (data[key] is string && data[key].size() <= maxLen);
+    }
+
+    function isValidOptionalNumber(data, key, minVal, maxVal) {
+      return !(key in data) || (data[key] is number && data[key] >= minVal && data[key] <= maxVal);
+    }
+
+    function isValidOptionalInt(data, key, minVal, maxVal) {
+      return !(key in data) || (data[key] is int && data[key] >= minVal && data[key] <= maxVal);
+    }
+
+    function isValidStringList(data, key, maxItems) {
+      return !(key in data) || (
+        data[key] is list &&
+        data[key].size() <= maxItems &&
+        (data[key].size() == 0 || data[key][0] is string)
+      );
+    }
+
+    // --- SavedRv Validation ---
+    function isValidSavedRv(data, userId) {
+      return data.userId == userId &&
+             data.unitId is string && data.unitId.size() >= 1 && data.unitId.size() <= 160 &&
+             data.title is string && data.title.size() >= 1 && data.title.size() <= 240 &&
+             data.make is string && data.make.size() <= 80 &&
+             data.rvType is string && data.rvType.size() <= 60 &&
+             data.dealerName is string && data.dealerName.size() <= 180 &&
+             data.dealerState is string && data.dealerState.size() <= 40 &&
+             data.savedPriceUsd is number && data.savedPriceUsd >= 0 && data.savedPriceUsd <= 5000000 &&
+             data.lastCheckedPriceUsd is number && data.lastCheckedPriceUsd >= 0 && data.lastCheckedPriceUsd <= 5000000 &&
+             data.hasPriceDrop is bool &&
+             isValidOptionalString(data, 'imageUrl', 1000) &&
+             isValidOptionalString(data, 'listingUrl', 1000) &&
+             isValidOptionalNumber(data, 'lengthFt', 0, 100) &&
+             isValidOptionalInt(data, 'sleeps', 0, 20) &&
+             isValidOptionalNumber(data, 'gvwrLbs', 0, 100000) &&
+             isValidOptionalNumber(data, 'dryWeightLbs', 0, 100000) &&
+             isValidOptionalString(data, 'condition', 30) &&
+             isValidOptionalInt(data, 'year', 1950, 2035) &&
+             isValidOptionalString(data, 'notes', 500) &&
+             isValidTimestamp(data.createdAt) &&
+             isValidTimestamp(data.updatedAt);
+    }
+
+    // --- SavedSearchAlert Validation ---
+    function isValidSavedAlert(data, userId) {
+      return data.userId == userId &&
+             data.label is string && data.label.size() >= 1 && data.label.size() <= 180 &&
+             data.alertsEnabled is bool &&
+             data.matchCount is int && data.matchCount >= 0 && data.matchCount <= 1000000 &&
+             data.newMatchCount is int && data.newMatchCount >= 0 && data.newMatchCount <= 1000 &&
+             isValidStringList(data, 'rvTypes', 8) &&
+             isValidOptionalNumber(data, 'priceMinUsd', 0, 5000000) &&
+             isValidOptionalNumber(data, 'priceMaxUsd', 0, 5000000) &&
+             isValidOptionalString(data, 'location', 80) &&
+             isValidOptionalNumber(data, 'radiusMiles', 1, 3000) &&
+             isValidOptionalInt(data, 'sleepsMin', 1, 14) &&
+             isValidOptionalNumber(data, 'lengthMaxFt', 8, 60) &&
+             isValidOptionalString(data, 'condition', 20) &&
+             isValidOptionalString(data, 'towVehicle', 120) &&
+             isValidOptionalNumber(data, 'truckTowRatingLbs', 1000, 40000) &&
+             isValidOptionalString(data, 'sort', 40) &&
+             isValidStringList(data, 'lastCheckedUnitIds', 10) &&
+             isValidTimestamp(data.createdAt) &&
+             isValidTimestamp(data.updatedAt);
+    }
+
+    // --- DealerInquiryRecord Validation ---
+    function isValidInquiry(data, userId) {
+      return data.userId == userId &&
+             data.mcpInquiryId is string && data.mcpInquiryId.size() >= 1 && data.mcpInquiryId.size() <= 128 &&
+             data.statusToken is string && data.statusToken.size() >= 1 && data.statusToken.size() <= 256 &&
+             data.unitId is string && data.unitId.size() >= 1 && data.unitId.size() <= 160 &&
+             data.rvTitle is string && data.rvTitle.size() >= 1 && data.rvTitle.size() <= 240 &&
+             data.dealerName is string && data.dealerName.size() >= 1 && data.dealerName.size() <= 180 &&
+             isValidOptionalString(data, 'dealerLocation', 120) &&
+             data.status in ['delivered', 'queued_for_matchrv', 'failed', 'dry_run', 'replied'] &&
+             data.message is string && data.message.size() >= 1 && data.message.size() <= 2000 &&
+             data.dryRun is bool &&
+             isValidOptionalNumber(data, 'priceUsd', 0, 5000000) &&
+             isValidOptionalString(data, 'dealerReply', 2000) &&
+             isValidOptionalString(data, 'imageUrl', 1000) &&
+             isValidTimestamp(data.createdAt) &&
+             isValidTimestamp(data.updatedAt);
+    }
+
+    // --- AnalyticsEventRecord Validation ---
+    function isValidAnalyticsEvent(data, userId) {
+      return data.userId == userId &&
+             data.eventType in ['swipe_right', 'swipe_left', 'save', 'inquiry_sent', 'agent_search'] &&
+             isValidOptionalString(data, 'unitId', 160) &&
+             isValidOptionalString(data, 'queryText', 300) &&
+             isValidOptionalString(data, 'rvType', 60) &&
+             isValidOptionalNumber(data, 'priceUsd', 0, 5000000) &&
+             isValidOptionalString(data, 'metadata', 240) &&
+             isValidTimestamp(data.createdAt);
+    }
+
+    // User-scoped subcollections
+    match /users/{userId} {
+      allow read, write: if false;
+
+      match /saved_rvs/{savedId} {
+        allow list: if isOwner(userId);
+        allow get: if isOwner(userId) && isValidId(savedId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(savedId) &&
+                         incoming().keys().hasAll([
+                           'userId', 'unitId', 'title', 'make', 'rvType',
+                           'dealerName', 'dealerState', 'savedPriceUsd',
+                           'lastCheckedPriceUsd', 'hasPriceDrop', 'createdAt', 'updatedAt'
+                         ]) &&
+                         incoming().keys().hasOnly([
+                           'userId', 'unitId', 'title', 'make', 'rvType',
+                           'dealerName', 'dealerState', 'savedPriceUsd',
+                           'lastCheckedPriceUsd', 'hasPriceDrop', 'imageUrl',
+                           'listingUrl', 'lengthFt', 'sleeps', 'gvwrLbs',
+                           'dryWeightLbs', 'condition', 'year', 'notes',
+                           'createdAt', 'updatedAt'
+                         ]) &&
+                         isValidSavedRv(incoming(), userId);
+
+        allow update: if isOwner(userId) &&
+                         isValidId(savedId) &&
+                         isValidSavedRv(incoming(), userId) &&
+                         incoming().userId == existing().userId &&
+                         incoming().unitId == existing().unitId &&
+                         incoming().createdAt == existing().createdAt &&
+                         (
+                           incoming().diff(existing()).affectedKeys().hasOnly([
+                             'lastCheckedPriceUsd', 'hasPriceDrop', 'imageUrl', 'notes', 'updatedAt'
+                           ])
+                         );
+
+        allow delete: if isOwner(userId) && isValidId(savedId);
+      }
+
+      match /saved_alerts/{alertId} {
+        allow list: if isOwner(userId);
+        allow get: if isOwner(userId) && isValidId(alertId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(alertId) &&
+                         incoming().keys().hasAll([
+                           'userId', 'label', 'alertsEnabled', 'matchCount',
+                           'newMatchCount', 'createdAt', 'updatedAt'
+                         ]) &&
+                         incoming().keys().hasOnly([
+                           'userId', 'label', 'alertsEnabled', 'matchCount',
+                           'newMatchCount', 'rvTypes', 'priceMinUsd', 'priceMaxUsd',
+                           'location', 'radiusMiles', 'sleepsMin', 'lengthMaxFt',
+                           'condition', 'towVehicle', 'truckTowRatingLbs', 'sort',
+                           'lastCheckedUnitIds', 'createdAt', 'updatedAt'
+                         ]) &&
+                         isValidSavedAlert(incoming(), userId);
+
+        allow update: if isOwner(userId) &&
+                         isValidId(alertId) &&
+                         isValidSavedAlert(incoming(), userId) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt &&
+                         (
+                           incoming().diff(existing()).affectedKeys().hasOnly(['alertsEnabled', 'updatedAt']) ||
+                           incoming().diff(existing()).affectedKeys().hasOnly([
+                             'matchCount', 'newMatchCount', 'lastCheckedUnitIds', 'updatedAt'
+                           ])
+                         );
+
+        allow delete: if isOwner(userId) && isValidId(alertId);
+      }
+
+      match /inquiries/{inquiryId} {
+        allow list: if isOwner(userId);
+        allow get: if isOwner(userId) && isValidId(inquiryId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(inquiryId) &&
+                         incoming().keys().hasAll([
+                           'userId', 'mcpInquiryId', 'statusToken', 'unitId',
+                           'rvTitle', 'dealerName', 'status', 'message',
+                           'dryRun', 'createdAt', 'updatedAt'
+                         ]) &&
+                         incoming().keys().hasOnly([
+                           'userId', 'mcpInquiryId', 'statusToken', 'unitId',
+                           'rvTitle', 'dealerName', 'dealerLocation', 'status',
+                           'message', 'dryRun', 'priceUsd', 'dealerReply',
+                           'imageUrl', 'createdAt', 'updatedAt'
+                         ]) &&
+                         isValidInquiry(incoming(), userId);
+
+        allow update: if isOwner(userId) &&
+                         isValidId(inquiryId) &&
+                         isValidInquiry(incoming(), userId) &&
+                         incoming().userId == existing().userId &&
+                         incoming().mcpInquiryId == existing().mcpInquiryId &&
+                         incoming().statusToken == existing().statusToken &&
+                         incoming().unitId == existing().unitId &&
+                         incoming().createdAt == existing().createdAt &&
+                         (
+                           incoming().diff(existing()).affectedKeys().hasOnly(['status', 'dealerReply', 'updatedAt']) ||
+                           incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updatedAt'])
+                         );
+
+        allow delete: if isOwner(userId) && isValidId(inquiryId);
+      }
+
+      match /analytics_events/{eventId} {
+        allow list: if isOwner(userId);
+        allow get: if isOwner(userId) && isValidId(eventId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(eventId) &&
+                         incoming().keys().hasAll(['userId', 'eventType', 'createdAt']) &&
+                         incoming().keys().hasOnly([
+                           'userId', 'eventType', 'unitId', 'queryText',
+                           'rvType', 'priceUsd', 'metadata', 'createdAt'
+                         ]) &&
+                         isValidAnalyticsEvent(incoming(), userId);
+
+        allow update: if false;
+        allow delete: if isOwner(userId) && isValidId(eventId);
+      }
+    }
+  }
+}

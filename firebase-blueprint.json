@@ -1,0 +1,158 @@
+{
+  "entities": {
+    "SavedRv": {
+      "title": "SavedRv",
+      "description": "An RV unit saved by a shopper from the swipe deck or detail view, including baseline price for price-drop tracking.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner Firebase Auth UID." },
+        "unitId": { "type": "string", "description": "Canonical MatchRV MCP unit_id (e.g. vin:...)." },
+        "title": { "type": "string", "description": "Display title of the RV." },
+        "make": { "type": "string", "description": "RV manufacturer make." },
+        "rvType": { "type": "string", "description": "MatchRV category type." },
+        "dealerName": { "type": "string", "description": "Dealer name and city." },
+        "dealerState": { "type": "string", "description": "Dealer US state code." },
+        "savedPriceUsd": { "type": "number", "description": "Last listed price when saved (0 if price on request)." },
+        "lastCheckedPriceUsd": { "type": "number", "description": "Most recently checked price from MatchRV MCP." },
+        "hasPriceDrop": { "type": "boolean", "description": "True when lastCheckedPriceUsd is lower than savedPriceUsd." },
+        "imageUrl": { "type": "string", "description": "Optional primary dealer listing photo URL." },
+        "listingUrl": { "type": "string", "description": "Optional dealer listing URL." },
+        "lengthFt": { "type": "number", "description": "Optional RV length in feet." },
+        "sleeps": { "type": "integer", "description": "Optional sleeping capacity." },
+        "gvwrLbs": { "type": "number", "description": "Optional GVWR in pounds." },
+        "dryWeightLbs": { "type": "number", "description": "Optional dry weight in pounds." },
+        "condition": { "type": "string", "description": "Optional condition (new/used/unknown)." },
+        "year": { "type": "integer", "description": "Optional model year." },
+        "notes": { "type": "string", "description": "Optional user notes." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())." }
+      },
+      "required": [
+        "userId",
+        "unitId",
+        "title",
+        "make",
+        "rvType",
+        "dealerName",
+        "dealerState",
+        "savedPriceUsd",
+        "lastCheckedPriceUsd",
+        "hasPriceDrop",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "SavedSearchAlert": {
+      "title": "SavedSearchAlert",
+      "description": "Saved search criteria monitored for new matches and price drops.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner Firebase Auth UID." },
+        "label": { "type": "string", "description": "Human-readable summary of the saved search." },
+        "alertsEnabled": { "type": "boolean", "description": "Whether alert notifications are active for this criteria." },
+        "matchCount": { "type": "integer", "description": "Latest matched unit count from MCP." },
+        "newMatchCount": { "type": "integer", "description": "Number of unseen units found on latest check." },
+        "rvTypes": { "type": "array", "description": "Selected MatchRV rv_types enum values." },
+        "priceMinUsd": { "type": "number", "description": "Optional minimum price in USD." },
+        "priceMaxUsd": { "type": "number", "description": "Optional maximum price in USD." },
+        "location": { "type": "string", "description": "Optional city, state, or ZIP." },
+        "radiusMiles": { "type": "number", "description": "Optional search radius in miles." },
+        "sleepsMin": { "type": "integer", "description": "Optional minimum sleeping capacity." },
+        "lengthMaxFt": { "type": "number", "description": "Optional max length in feet." },
+        "condition": { "type": "string", "description": "Optional condition (any/new/used)." },
+        "towVehicle": { "type": "string", "description": "Optional tow vehicle description." },
+        "truckTowRatingLbs": { "type": "number", "description": "Optional tow rating in pounds." },
+        "sort": { "type": "string", "description": "Optional sort key." },
+        "lastCheckedUnitIds": { "type": "array", "description": "Up to 10 most recent unit IDs seen for new-match diffing." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())." }
+      },
+      "required": [
+        "userId",
+        "label",
+        "alertsEnabled",
+        "matchCount",
+        "newMatchCount",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "DealerInquiryRecord": {
+      "title": "DealerInquiryRecord",
+      "description": "Dealer inquiry sent via MatchRV MCP send_dealer_inquiry, with private statusToken for live status polling.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner Firebase Auth UID." },
+        "mcpInquiryId": { "type": "string", "description": "Inquiry ID returned by MatchRV MCP." },
+        "statusToken": { "type": "string", "description": "Private status token returned by MatchRV MCP." },
+        "unitId": { "type": "string", "description": "Canonical MatchRV unit_id." },
+        "rvTitle": { "type": "string", "description": "RV display title." },
+        "dealerName": { "type": "string", "description": "Dealership name." },
+        "dealerLocation": { "type": "string", "description": "Optional dealership city/state." },
+        "status": {
+          "type": "string",
+          "enum": ["delivered", "queued_for_matchrv", "failed", "dry_run", "replied"],
+          "description": "Current MCP delivery/reply status."
+        },
+        "message": { "type": "string", "description": "Shopper inquiry message." },
+        "dryRun": { "type": "boolean", "description": "Whether inquiry was sent in dry_run test mode." },
+        "priceUsd": { "type": "number", "description": "Optional listed price at inquiry time." },
+        "dealerReply": { "type": "string", "description": "Optional dealership reply returned by get_dealer_inquiry_status." },
+        "imageUrl": { "type": "string", "description": "Optional RV thumbnail URL." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())." }
+      },
+      "required": [
+        "userId",
+        "mcpInquiryId",
+        "statusToken",
+        "unitId",
+        "rvTitle",
+        "dealerName",
+        "status",
+        "message",
+        "dryRun",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "AnalyticsEventRecord": {
+      "title": "AnalyticsEventRecord",
+      "description": "Shopper interaction telemetry event (swipe, save, inquiry_sent, agent_search).",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner Firebase Auth UID." },
+        "eventType": {
+          "type": "string",
+          "enum": ["swipe_right", "swipe_left", "save", "inquiry_sent", "agent_search"],
+          "description": "Analytics event type."
+        },
+        "unitId": { "type": "string", "description": "Optional RV unit ID." },
+        "queryText": { "type": "string", "description": "Optional AI search query text." },
+        "rvType": { "type": "string", "description": "Optional RV category." },
+        "priceUsd": { "type": "number", "description": "Optional RV price in USD." },
+        "metadata": { "type": "string", "description": "Optional short summary string." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())." }
+      },
+      "required": ["userId", "eventType", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/saved_rvs/{savedId}": {
+      "schema": { "$ref": "#/entities/SavedRv" },
+      "description": "Per-user saved RV listings with price-drop tracking."
+    },
+    "/users/{userId}/saved_alerts/{alertId}": {
+      "schema": { "$ref": "#/entities/SavedSearchAlert" },
+      "description": "Per-user saved search filters and alert preferences."
+    },
+    "/users/{userId}/inquiries/{inquiryId}": {
+      "schema": { "$ref": "#/entities/DealerInquiryRecord" },
+      "description": "Per-user dealer inquiries and live status tracking."
+    },
+    "/users/{userId}/analytics_events/{eventId}": {
+      "schema": { "$ref": "#/entities/AnalyticsEventRecord" },
+      "description": "Per-user analytics events for swipe, save, inquiry_sent, and agent_search."
+    }
+  }
+}
