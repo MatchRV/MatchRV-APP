@@ -1,4 +1,4 @@
-// Firebase JS SDK bootstrap. Returns nulls (browse-only mode) when env config is missing.
+// Firebase JS SDK bootstrap. Returns nulls when env config is missing (sign-in unavailable; see README).
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getApp, getApps, initializeApp, type FirebaseApp } from 'firebase/app';
 import { getAuth, getReactNativePersistence, initializeAuth, type Auth } from 'firebase/auth';

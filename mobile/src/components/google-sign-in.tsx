@@ -5,7 +5,7 @@ import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import { GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
 import { useState } from 'react';
-import { Platform } from 'react-native';
+import { Platform, type StyleProp, type ViewStyle } from 'react-native';
 
 import { config } from '@/lib/config';
 import { getFirebaseAuth } from '@/lib/firebase/app';
@@ -21,7 +21,8 @@ export function googleClientIdForPlatform(): string | undefined {
   return Platform.select({ ios: g.iosClientId, android: g.androidClientId, default: g.webClientId });
 }
 
-export function GoogleSignInButton() {
+/** Teal/aqua brand button, matching the original AuthScreen.kt (MatchAqua on MatchInk950). */
+export function GoogleSignInButton({ style }: { style?: StyleProp<ViewStyle> }) {
   const toast = useToast();
   const [busy, setBusy] = useState(false);
   const [request, , promptAsync] = Google.useIdTokenAuthRequest({
@@ -60,6 +61,7 @@ export function GoogleSignInButton() {
       disabled={!request}
       onPress={() => void signIn()}
       testID="google-sign-in"
+      style={style}
     />
   );
 }

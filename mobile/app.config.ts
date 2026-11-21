@@ -27,6 +27,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ios: {
     bundleIdentifier: APP_ID,
     supportsTablet: true,
+    // Sign in with Apple capability (App Store guideline 4.8: required because Google sign-in is offered).
+    usesAppleSignIn: true,
     googleServicesFile: optionalFile(process.env.GOOGLE_SERVICE_INFO_PLIST),
     infoPlist: { ITSAppUsesNonExemptEncryption: false },
   },
@@ -55,6 +57,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     ],
     'expo-secure-store',
     'expo-web-browser',
+    'expo-apple-authentication',
     [
       'expo-notifications',
       {
