@@ -1,0 +1,69 @@
+{
+ "result": {
+  "content": [
+   {
+    "type": "text",
+    "text": "{\"payloadFits\":[{\"unit_id\":\"vin:4X4TSME2XSA338389\",\"title\":\"2025 FOREST RIVER SALEM 29VBUD\",\"verdict\":\"fits\",\"tongueLowLbs\":971,\"tongueHighLbs\":1457,\"peopleAndCargoLbs\":0,\"remainingAfterTongueLbs\":343,\"detail\":\"Est. tongue 971\u20131457 lbs + 0 lbs people/cargo leaves ~343 lbs of your 1,800-lb payload.\"}],\"payloadNote\":\"Tongue estimated at 10-15% of GVWR (loaded), not the published empty hitch weight. Payload usually runs out before tow rating.\",\"resolution\":{\"input\":\"2022 Ford F-150 3.5L EcoBoost\",\"matched\":{\"key\":\"ford_f150\",\"label\":\"Ford F-150\",\"aliases\":[\"f-150\",\"f150\",\"f 150\"],\"towLbsMin\":5000,\"towLbsMax\":13500,\"note\":\"Varies by engine/cab/axle; many are 7,000-11,300 lbs.\"},\"statedRatingLbs\":null,\"rangeLbs\":{\"min\":5000,\"max\":13500},\"filterCapLbs\":13500,\"comfortCapLbs\":4000,\"safetyMarginPct\":20,\"caveats\":[\"Ford F-150 ratings span 5,000\u201313,500 lbs by configuration. Filtering out anything above the top rating; results show whether a unit fits any configuration or only some. State your actual rating (e.g. \\\"rated 8,000 lbs\\\") for precision.\",\"Actual capacity depends on cab, bed, drivetrain, axle ratio, and package \u2014 check the door-jamb sticker and owner's manual.\",\"Payload (passengers, cargo, hitch/tongue weight) usually runs out before tow rating does.\",\"This is planning guidance from MatchRV's reference table, not a safety determination for a specific vehicle.\",\"Varies by engine/cab/axle; many are 7,000-11,300 lbs.\"]},\"fits\":[{\"unitId\":\"vin:4X4TSME2XSA338389\",\"verdict\":\"depends_on_config\",\"comparedWeightLbs\":9710,\"comparedWeightField\":\"gvwrLbs\",\"detail\":\"9,710 lbs GVWR (loaded max) vs Ford F-150 range 5,000\u201313,500 lbs.\",\"unit_id\":\"vin:4X4TSME2XSA338389\",\"title\":\"2025 FOREST RIVER SALEM 29VBUD\"}],\"safetyNotice\":\"Verify the exact vehicle configuration, weighed coach and axle loads, GVWR/GCWR, hitch and tongue limits, passengers and cargo before towing. Engine horsepower and torque do not override any weight limit.\"}"
+   }
+  ],
+  "structuredContent": {
+   "payloadFits": [
+    {
+     "unit_id": "vin:4X4TSME2XSA338389",
+     "title": "2025 FOREST RIVER SALEM 29VBUD",
+     "verdict": "fits",
+     "tongueLowLbs": 971,
+     "tongueHighLbs": 1457,
+     "peopleAndCargoLbs": 0,
+     "remainingAfterTongueLbs": 343,
+     "detail": "Est. tongue 971\u20131457 lbs + 0 lbs people/cargo leaves ~343 lbs of your 1,800-lb payload."
+    }
+   ],
+   "payloadNote": "Tongue estimated at 10-15% of GVWR (loaded), not the published empty hitch weight. Payload usually runs out before tow rating.",
+   "resolution": {
+    "input": "2022 Ford F-150 3.5L EcoBoost",
+    "matched": {
+     "key": "ford_f150",
+     "label": "Ford F-150",
+     "aliases": [
+      "f-150",
+      "f150",
+      "f 150"
+     ],
+     "towLbsMin": 5000,
+     "towLbsMax": 13500,
+     "note": "Varies by engine/cab/axle; many are 7,000-11,300 lbs."
+    },
+    "statedRatingLbs": null,
+    "rangeLbs": {
+     "min": 5000,
+     "max": 13500
+    },
+    "filterCapLbs": 13500,
+    "comfortCapLbs": 4000,
+    "safetyMarginPct": 20,
+    "caveats": [
+     "Ford F-150 ratings span 5,000\u201313,500 lbs by configuration. Filtering out anything above the top rating; results show whether a unit fits any configuration or only some. State your actual rating (e.g. \"rated 8,000 lbs\") for precision.",
+     "Actual capacity depends on cab, bed, drivetrain, axle ratio, and package \u2014 check the door-jamb sticker and owner's manual.",
+     "Payload (passengers, cargo, hitch/tongue weight) usually runs out before tow rating does.",
+     "This is planning guidance from MatchRV's reference table, not a safety determination for a specific vehicle.",
+     "Varies by engine/cab/axle; many are 7,000-11,300 lbs."
+    ]
+   },
+   "fits": [
+    {
+     "unitId": "vin:4X4TSME2XSA338389",
+     "verdict": "depends_on_config",
+     "comparedWeightLbs": 9710,
+     "comparedWeightField": "gvwrLbs",
+     "detail": "9,710 lbs GVWR (loaded max) vs Ford F-150 range 5,000\u201313,500 lbs.",
+     "unit_id": "vin:4X4TSME2XSA338389",
+     "title": "2025 FOREST RIVER SALEM 29VBUD"
+    }
+   ],
+   "safetyNotice": "Verify the exact vehicle configuration, weighed coach and axle loads, GVWR/GCWR, hitch and tongue limits, passengers and cargo before towing. Engine horsepower and torque do not override any weight limit."
+  }
+ },
+ "jsonrpc": "2.0",
+ "id": 6
+}
