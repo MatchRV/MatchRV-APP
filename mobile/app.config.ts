@@ -35,24 +35,24 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   android: {
     package: APP_ID,
     adaptiveIcon: {
-      foregroundImage: './assets/images/icon.png',
-      backgroundColor: '#040B12',
+      foregroundImage: './assets/images/adaptive-icon.png',
+      backgroundColor: '#00010A',
     },
     googleServicesFile: optionalFile(process.env.GOOGLE_SERVICES_JSON),
     predictiveBackGestureEnabled: false,
   },
   web: {
     output: 'single',
-    favicon: './assets/images/icon.png',
+    favicon: './assets/images/favicon.png',
   },
   plugins: [
     'expo-router',
     [
       'expo-splash-screen',
       {
-        backgroundColor: '#040B12',
-        image: './assets/images/logo-transparent.png',
-        imageWidth: 220,
+        backgroundColor: '#00010A',
+        image: './assets/images/splash-icon.png',
+        imageWidth: 240,
       },
     ],
     'expo-secure-store',

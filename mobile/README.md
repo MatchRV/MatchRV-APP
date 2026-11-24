@@ -147,5 +147,5 @@ Nothing below has been created. These are accounts and credentials only the owne
 - **Compare** shows the server's `comparison.rows` spec table when present. Otherwise it falls back to the Kotlin per-unit fields.
 - **Filter sliders** (radius, max length) are stepped chip rows, because React Native has no built-in slider.
 - **Analytics events** are written to Firestore only for signed-in users, like the Kotlin app.
-- **Icons**: the tab bar uses text glyphs (no icon font dependency). The app icon is the 256×256 MatchRV logo from the Kotlin app. Supply a 1024×1024 source before store submission.
+- **Icons**: the tab bar uses text glyphs (no icon font dependency). The app icon is the 1024×1024 square MatchRV icon (opaque, night-sky `#00010A`); the Android adaptive-icon foreground keeps the logo inside the ~66% safe zone on `#00010A`, and the splash uses the same artwork.
 - The UI is dark-only, matching the Kotlin brand theme.
